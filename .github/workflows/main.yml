@@ -23,7 +23,8 @@ jobs:
     
   home:
     runs-on: self-hosted
+    working-directory: '/var/www/'
     steps:
       - name: Deploy to server
         uses: actions/checkout@v2
-        working-directory: '/var/www/hackit.pro'
+        path: 'hackit.pro'
