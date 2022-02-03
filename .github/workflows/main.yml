@@ -27,4 +27,4 @@ jobs:
       - name: Deploy to server
         uses: actions/checkout@v2
         with:
-          path: '/var/www/hackit.pro'
+          path: '../../../../../../var/www/hackit.pro'
