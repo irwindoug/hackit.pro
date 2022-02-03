@@ -1,0 +1,21 @@
+name: Deploy Code to Cloud Server
+on:
+  push:
+    branches: [main]
+    
+  workflow_dispatch:
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Deploy to Glitch
+      uses: wei/git-sync@v1
+      env:
+        SOURCE_REPO: "https://github.com/irwindoug/hackit.pro.git"
+        SOURCE_BRANCH: "main"
+        DESTINATION_REPO: ${{ secrets.glitch_git_URL }}
+        DESTINATION_BRANCH: "master"
+      with:
+        args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
