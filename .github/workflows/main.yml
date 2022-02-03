@@ -1,0 +1,29 @@
+name: Deploy Code to Home Server
+on:
+  push:
+    branches: [main]
+    
+  workflow_dispatch:
+  
+jobs:
+  deploy:
+    runs-on: ${{ matix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, self-hosted]
+        
+    steps:
+    - name: Deploy to server
+      if: matrix.os == "self-hosted"
+      uses: actions/checkout@v2
+      
+    - name: Deploy to Glitch
+      if: matrix.os == "ubuntu-latest"
+      uses: wei/git-sync@v1
+      env:
+        SOURCE_REPO: "https://github.com/irwindoug/hackit.pro.git"
+        SOURCE_BRANCH: "main"
+        DESTINATION_REPO: ${{ secrets.glitch_git_URL }}
+        DESTINATION_BRANCH: "master"
+      with:
+        args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
