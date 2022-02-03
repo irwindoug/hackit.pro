@@ -1,4 +1,4 @@
-name: Deploy Code to Cloud Server
+name: Deploy Code to Home Server
 on:
   push:
     branches: [main]
@@ -7,10 +7,18 @@ on:
   
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matix.os}}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, self-hosted]
+        
     steps:
-    
+    - name: Deploy to server
+      if: matrix.os == "self-hosted"
+      uses: actions/checkout@v2
+      
     - name: Deploy to Glitch
+      if: matrix.os == "ubuntu-latest"
       uses: wei/git-sync@v1
       env:
         SOURCE_REPO: "https://github.com/irwindoug/hackit.pro.git"
