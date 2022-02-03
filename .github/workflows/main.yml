@@ -1,4 +1,4 @@
-name: Deploy Code to Home Server
+name: Deploy Code
 on:
   push:
     branches: [main]
@@ -6,17 +6,10 @@ on:
   workflow_dispatch:
   
 jobs:
-  deploy:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, self-hosted]
-        
-    steps:
-    - name: Deploy to server
-      if: ${{ matrix.os }} == 'self-hosted'
-      uses: actions/checkout@v2
-      
+  cloud:
+    runs-on: ubuntu-latest
+    
+    steps:      
     - name: Deploy to Glitch
       if: ${{ matrix.os }} == 'ubuntu-latest'
       uses: wei/git-sync@v1
@@ -27,3 +20,9 @@ jobs:
         DESTINATION_BRANCH: "master"
       with:
         args: $SOURCE_REPO $SOURCE_BRANCH $DESTINATION_REPO $DESTINATION_BRANCH
+    
+  home:
+    runs-on: self-hosted
+    steps:
+      - name: Deploy to server
+        uses: actions/checkout@v2
