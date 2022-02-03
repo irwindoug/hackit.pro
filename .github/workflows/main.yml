@@ -14,11 +14,11 @@ jobs:
         
     steps:
     - name: Deploy to server
-      if: matrix.os == "self-hosted"
+      if: matrix.os == self-hosted
       uses: actions/checkout@v2
       
     - name: Deploy to Glitch
-      if: matrix.os == "ubuntu-latest"
+      if: matrix.os == ubuntu-latest
       uses: wei/git-sync@v1
       env:
         SOURCE_REPO: "https://github.com/irwindoug/hackit.pro.git"
