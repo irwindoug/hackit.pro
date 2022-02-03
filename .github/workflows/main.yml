@@ -7,7 +7,7 @@ on:
   
 jobs:
   deploy:
-    runs-on: ${{ matix.os}}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-latest, self-hosted]
