@@ -1,0 +1,36 @@
+main{
+    padding-bottom: 4em;
+}
+
+h1 {
+    font-size: 3em;
+    padding: 1em;
+}
+
+h2 {
+    padding: .25em 0;
+}
+
+ul {
+    padding: 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 30% 60%;
+    justify-content: space-around;
+}
+
+.left-section img {
+    border-radius: 10%;
+}
+
+.personal-links{
+    text-align: center;
+}
+
+.personal-links a{
+    color: var(--link-color);
+    font-size: 1.25em;
+    text-shadow: .5px .5px .5px var(--primary-color);
+}

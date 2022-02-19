@@ -1,2 +1,3 @@
-# Images are ignored because they will be uploaded to Glitch. A link will be created for them.
+# Images and assets are ignored because they will be uploaded to Glitch. A link will be created for them.
 Img 
+.glitch-assets
